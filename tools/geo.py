@@ -57,6 +57,25 @@ MARKETS = [
            4, 4, 2, 5, 5, "продаём в Заливе, редактируем в Каире"),
     Market("Нигерия, премиум Лагос", "NGN", 90, 12.0, 5.0, 4.0, 4.0, 0.40, 25.0,
            2, 3, 2, 2, 1, "экономика сходится, сегмент почти пустой"),
+
+    # «Наш язык, их доход» — русскоязычные общины в богатых странах.
+    # Редакцию пересобирать НЕ надо: ставка редактора остаётся нашей.
+    Market("ОАЭ, рус. сегмент", "USD", 140, 22.0, 7.0, 7.4, 4.0, 0.55, 28.0,
+           4, 4, 5, 5, 3, "релоканты: молодые семьи, высокий доход"),
+    Market("Израиль, рус. сегмент", "USD", 130, 28.0, 6.0, 7.4, 4.0, 0.55, 25.0,
+           4, 4, 5, 4, 4, "1,1 млн русскоязычных, рождаемость 2,9 — выше всех в ОЭСР"),
+    Market("США, рус. сегмент", "USD", 130, 26.0, 9.0, 7.4, 4.0, 0.50, 30.0,
+           3, 4, 5, 4, 3, "~3 млн русскоязычных, дорогой трафик"),
+    Market("Германия, рус. сегмент", "USD", 120, 24.0, 7.0, 7.4, 4.0, 0.50, 25.0,
+           3, 4, 5, 4, 2, "3,7 млн, но община стареет — мало малышей"),
+
+    # Локальные языки: редакцию надо строить с нуля
+    Market("Польша", "USD", 85, 16.0, 5.0, 9.0, 4.0, 0.50, 18.0,
+           3, 4, 1, 4, 3, "дешевле трафик, но нужен польский редактор"),
+    Market("Великобритания", "USD", 110, 24.0, 7.0, 22.0, 4.0, 0.50, 45.0,
+           3, 4, 1, 5, 5, "$438 на ребёнка в год — и родина Wonderbly"),
+    Market("Южная Корея", "USD", 150, 20.0, 6.0, 20.0, 4.0, 0.50, 40.0,
+           3, 3, 1, 5, 5, "культ трат на единственного ребёнка"),
 ]
 
 
@@ -80,6 +99,18 @@ def econ(m: Market) -> dict:
         "price_local": m.price_usd * FX[m.currency],
         "floor_local": floor * FX[m.currency],
     }
+
+
+def breakeven_rate(m: Market) -> float:
+    """Ставка редактора, при которой вклад обнуляется."""
+    pack = m.print_usd * PACK_SHARE
+    service = m.price_usd * SERVICE_SHARE * 0.2
+    fixed_post = (m.print_usd + m.ship_usd + pack
+                  + (m.print_usd + m.ship_usd) * DEFECT + service)
+    num = (m.price_usd * (1 - ACQ) - m.generation_usd / m.conv_preview_paid
+           - fixed_post)
+    den = EDIT_MIN_PRE / 60 / m.conv_preview_paid + EDIT_MIN_POST / 60
+    return num / den
 
 
 def readiness(m: Market) -> float:
@@ -140,7 +171,25 @@ def main():
         months12 = (4000 + 200 * 12) / net / 12
         print(f"  {m.name:<24}{months12:>5.1f} книг/мес в течение года")
 
-    print("\n5. ЗАМЕТКИ")
+    print("\n5. ЧТО НА САМОМ ДЕЛЕ РЕШАЕТ: ставка редактора")
+    print("─" * 88)
+    print("  Предельная ставка — при которой вклад обнуляется.")
+    print("  Рынок жив, пока редактор на языке покупателя дешевле этой суммы.\n")
+    print(f"  {'Рынок':<24}{'Ставка':>9}{'Предел':>9}{'Запас':>9}"
+          f"{'Доля редактуры в затратах':>28}")
+    for m in sorted(MARKETS, key=lambda x: -(breakeven_rate(x) - x.editor_rate_hour)):
+        br = breakeven_rate(m)
+        e = econ(m)
+        edit_cost = (EDIT_MIN_PRE / 60 / m.conv_preview_paid
+                     + EDIT_MIN_POST / 60) * m.editor_rate_hour
+        total_cost = m.price_usd - e["contrib"]
+        share = edit_cost / total_cost if total_cost > 0 else 0
+        gap = br - m.editor_rate_hour
+        flag = "  ← убыточен" if gap < 0 else ""
+        print(f"  {m.name:<24}{money(m.editor_rate_hour):>9}{money(br):>9}"
+              f"{money(gap):>9}{share:>27.0%}{flag}")
+
+    print("\n6. ЗАМЕТКИ")
     print("─" * 88)
     for m in MARKETS:
         print(f"  {m.name:<24}{m.note}")
