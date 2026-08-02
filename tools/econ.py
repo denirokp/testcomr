@@ -337,8 +337,42 @@ def main():
     show_upsells(c)
     show_capacity(c)
     show_levers(c)
+    show_editorial_question(c)
     print()
 
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# НУЖЕН ЛИ РЕДАКТОР: сценарии по объёму human-review
+# ─────────────────────────────────────────────────────────────────────────────
+
+EDITORIAL_SCENARIOS = [
+    ("Concierge: человек на каждой книге", 100, 35),
+    ("После двух волн автоматизации",       45, 17),
+    ("Выборочный контроль: 30% + флаги",    18,  7),
+    ("Только исключения по гейтам",          7,  3),
+    ("Без человека вообще",                  0,  0),
+]
+
+
+def show_editorial_question(c: Costs):
+    section("11. НУЖЕН ЛИ РЕДАКТОР — цена вопроса")
+    print(f"  {'Сценарий':<36}{'Мин':>6}{'Вклад':>9}{'Пол цены':>10}"
+          f"{'Потолок*':>10}{'Выручка/мес':>13}")
+    for name, pre, post in EDITORIAL_SCENARIOS:
+        cc = replace(c, editorial_min_pre=pre, editorial_min_post=post)
+        contrib = blended_contribution(cc, 0.55)
+        floor = price_floor(cc, 0.55, 0)
+        mins = pre / 0.55 + post
+        ceiling = 120 * 60 / mins if mins else float("inf")
+        ceiling = min(ceiling, 200)
+        print(f"  {name:<36}{pre + post:>6}{money(contrib):>9}{money(floor):>10}"
+              f"{round(ceiling):>10}{money(ceiling * blended_price(c)):>13}")
+    print("\n  * Потолок — книг/мес при 120 часах производства одного человека.")
+    print("    Ограничен сверху 200: дальше упирается не в редактора, а в печать,")
+    print("    поддержку и приёмку.")
+    print("\n  Ключевое: редактор задаёт НЕ ТОЛЬКО себестоимость, но и ценовой пол,")
+    print("  а пол определяет, в каком сегменте рынка мы вообще можем находиться.")
 
 if __name__ == "__main__":
     main()
