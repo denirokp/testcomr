@@ -33,6 +33,20 @@
 | [docs/market-notes.md](docs/market-notes.md) | Наблюдения по конкурентам (по состоянию на 2026-08-01) |
 | [docs/decision-log.md](docs/decision-log.md) | Decision Log. Каждое решение — с датой, причиной и последствиями |
 
+## Бизнес-пакет
+
+| Файл | О чём |
+|---|---|
+| [docs/business/product-line.md](docs/business/product-line.md) | Три продукта, цены, состав превью, критерии отдачи клиенту |
+| [docs/business/unit-economics.md](docs/business/unit-economics.md) | Себестоимость, вклад, безубыточность, чувствительность, рычаги |
+| [docs/business/forecast-90d.md](docs/business/forecast-90d.md) | Три сценария на август–октябрь, трафик, что считать успехом |
+| [docs/business/gtm.md](docs/business/gtm.md) | Сегменты, каналы, оффер, лендинги, скрипт concierge-продажи |
+| [docs/business/operations.md](docs/business/operations.md) | 19 шагов от заявки до отправки, роли, риски, правило остановки |
+| [docs/business/budget-and-plan.md](docs/business/budget-and-plan.md) | Бюджет первого месяца и план на 14 дней |
+| [docs/business/decisions-morning.md](docs/business/decisions-morning.md) | Р-1…Р-10: решения владельца с рекомендациями |
+
+Расчётная модель: `python3 tools/econ.py` — меняешь допущения, пересчитываешь всё.
+
 ## Рабочие формы
 
 Заполняются при прогоне книги. Не документация — инструменты.
