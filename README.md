@@ -37,6 +37,7 @@
 
 | Файл | О чём |
 |---|---|
+| [docs/business/market-research.md](docs/business/market-research.md) | Исследование рынка с источниками: тиры, игроки, юр. рамка 152-ФЗ |
 | [docs/business/product-line.md](docs/business/product-line.md) | Три продукта, цены, состав превью, критерии отдачи клиенту |
 | [docs/business/unit-economics.md](docs/business/unit-economics.md) | Себестоимость, вклад, безубыточность, чувствительность, рычаги |
 | [docs/business/forecast-90d.md](docs/business/forecast-90d.md) | Три сценария на август–октябрь, трафик, что считать успехом |

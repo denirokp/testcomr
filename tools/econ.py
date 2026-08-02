@@ -244,6 +244,32 @@ def show_allowable_cac(c: Costs):
               f"целевой CAC ≤ {money(target_cac)} ₽")
 
 
+def price_floor(c: Costs, conv_paid: float, target_contribution: float) -> float:
+    """Минимальная цена, дающая заданный вклад. Ключ к вопросу «а если дешевле»."""
+    fixed_post = (c.print_single + c.shipping + c.packaging
+                  + (c.print_single + c.shipping) * c.defect_rate
+                  + editorial_post(c) + c.service_per_order)
+    pre_eff = cost_per_preview(c) / conv_paid
+    return (target_contribution + pre_eff + fixed_post) / (1 - c.acquiring)
+
+
+def show_price_floor(c: Costs):
+    section("10. ЦЕНОВОЙ ПОЛ — можем ли мы вообще быть дешевле")
+    print("  Минимальная цена при заданном вкладе, ₽\n")
+    print(f"  {'Вклад':<16}{'конв. 45%':>13}{'конв. 55%':>13}{'конв. 65%':>13}")
+    for target in (0, 1500, 3000, 4000):
+        label = "0 (в ноль)" if target == 0 else money(target) + " ₽"
+        row = f"  {label:<16}"
+        for cv in (0.45, 0.55, 0.65):
+            row += f"{money(price_floor(c, cv, target)):>13}"
+        print(row)
+    floor = price_floor(c, 0.55, 0)
+    print(f"\n  Продавать дешевле {money(floor)} ₽ при нашей структуре затрат")
+    print(f"  означает терять деньги на каждом заказе.")
+    print(f"  Рыночный диапазон РФ (2026): 990–7 000 ₽ — см. docs/business/market-research.md")
+    print(f"  Вывод: массовый тир нам структурно недоступен. Только премиум.")
+
+
 def show_upsells(c: Costs):
     section("8. ДОПРОДАЖИ (вклад почти чистый — превью уже оплачено)")
     for name, price, kind in UPSELLS:
@@ -307,6 +333,7 @@ def main():
     show_breakeven(c)
     show_allowable_cac(c)
     show_forecast(c)
+    show_price_floor(c)
     show_upsells(c)
     show_capacity(c)
     show_levers(c)
