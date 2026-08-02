@@ -44,9 +44,11 @@
 | [docs/business/gtm.md](docs/business/gtm.md) | Сегменты, каналы, оффер, лендинги, скрипт concierge-продажи |
 | [docs/business/operations.md](docs/business/operations.md) | 19 шагов от заявки до отправки, роли, риски, правило остановки |
 | [docs/business/budget-and-plan.md](docs/business/budget-and-plan.md) | Бюджет первого месяца и план на 14 дней |
+| [docs/business/geo-expansion.md](docs/business/geo-expansion.md) | География: Нигерия, Египет, Залив, СНГ, диаспора — что сходится и почему |
 | [docs/business/decisions-morning.md](docs/business/decisions-morning.md) | Р-1…Р-10: решения владельца с рекомендациями |
 
-Расчётная модель: `python3 tools/econ.py` — меняешь допущения, пересчитываешь всё.
+Расчётные модели: `python3 tools/econ.py` — юнит-экономика и прогноз;
+`python3 tools/geo.py` — сравнение рынков по странам. Меняешь допущения — пересчитывается всё.
 
 ## Рабочие формы
 
