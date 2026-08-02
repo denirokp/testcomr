@@ -49,7 +49,8 @@
 | [docs/business/decisions-morning.md](docs/business/decisions-morning.md) | Р-1…Р-10: решения владельца с рекомендациями |
 
 Расчётные модели: `python3 tools/econ.py` — юнит-экономика и прогноз;
-`python3 tools/geo.py` — сравнение рынков по странам. Меняешь допущения — пересчитывается всё.
+`python3 tools/geo.py` — сравнение рынков по странам;
+`python3 tools/wordstat.py` — спрос, сезонность и перевод запросов в заказы. Меняешь допущения — пересчитывается всё.
 
 ## Технический стек
 
@@ -68,6 +69,7 @@
 | [forms/02-consistency-sheet.md](forms/02-consistency-sheet.md) | шаг 7, по одному листу на оценивающего |
 | [forms/03-book-report.md](forms/03-book-report.md) | шаг 8, книга без него не считается прогнанной |
 | [forms/04-deletion-log.md](forms/04-deletion-log.md) | шаг 9 и еженедельная сверка |
+| [forms/05-wordstat-collection.md](forms/05-wordstat-collection.md) | сбор спроса в Wordstat, 10 минут → `python3 tools/wordstat.py` |
 
 ## Правило работы
 
