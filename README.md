@@ -14,6 +14,7 @@
 | Кода | нет (осознанно — сначала домен, приватность и экономика) |
 | Первый каталог | ребёнок, ребёнок + питомец, питомец |
 | Первый запуск | **pet-only concierge** (ручной пайплайн, без детских фото) |
+| Детский пилот | треки A и B открыты (без клиентских фото), коммерческие заказы закрыты |
 
 ## Документы
 
@@ -21,6 +22,7 @@
 |---|---|
 | [docs/constitution.md](docs/constitution.md) | Высший приоритет. 16 правил продукта и порядок их изменения |
 | [docs/strategy.md](docs/strategy.md) | Стратегия запуска: широкая архитектура — узкий первый запуск |
+| [docs/child-pilot.md](docs/child-pilot.md) | Детский пилот: три трека, что открыто и что закрыто |
 | [docs/domain-model.md](docs/domain-model.md) | Story Project, Character, Relationships, Collections, Quality Gates |
 | [docs/privacy.md](docs/privacy.md) | Жизненный цикл фото, согласия, удаление, запрет обучения моделей |
 | [docs/unit-economics.md](docs/unit-economics.md) | Модель юнит-экономики и разбор публичных заявлений рынка |
