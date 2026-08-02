@@ -31,6 +31,7 @@
 | [docs/privacy.md](docs/privacy.md) | Жизненный цикл фото, согласия, удаление, запрет обучения моделей |
 | [docs/unit-economics.md](docs/unit-economics.md) | Модель юнит-экономики и разбор публичных заявлений рынка |
 | [docs/market-notes.md](docs/market-notes.md) | Наблюдения по конкурентам (по состоянию на 2026-08-01) |
+| [docs/research-brief.md](docs/research-brief.md) | Промт на глубокое исследование: 12 блоков, приоритеты P0–P2 |
 | [docs/decision-log.md](docs/decision-log.md) | Decision Log. Каждое решение — с датой, причиной и последствиями |
 
 ## Бизнес-пакет
