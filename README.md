@@ -44,11 +44,19 @@
 | [docs/business/gtm.md](docs/business/gtm.md) | Сегменты, каналы, оффер, лендинги, скрипт concierge-продажи |
 | [docs/business/operations.md](docs/business/operations.md) | 19 шагов от заявки до отправки, роли, риски, правило остановки |
 | [docs/business/budget-and-plan.md](docs/business/budget-and-plan.md) | Бюджет первого месяца и план на 14 дней |
+| [docs/business/demand-analysis.md](docs/business/demand-analysis.md) | Сезонность, поводы, восемь корреляций — очевидных и нет |
 | [docs/business/geo-expansion.md](docs/business/geo-expansion.md) | География: Нигерия, Египет, Залив, СНГ, диаспора — что сходится и почему |
 | [docs/business/decisions-morning.md](docs/business/decisions-morning.md) | Р-1…Р-10: решения владельца с рекомендациями |
 
 Расчётные модели: `python3 tools/econ.py` — юнит-экономика и прогноз;
 `python3 tools/geo.py` — сравнение рынков по странам. Меняешь допущения — пересчитывается всё.
+
+## Технический стек
+
+| Файл | О чём |
+|---|---|
+| [docs/tech/generation-stack.md](docs/tech/generation-stack.md) | Чем генерят конкуренты, что брать нам, конфликт вендорских условий с правилом 9 |
+| [docs/tech/automation-roadmap.md](docs/tech/automation-roadmap.md) | Две волны автоматизации: 135 → 62 минуты на книгу |
 
 ## Рабочие формы
 
